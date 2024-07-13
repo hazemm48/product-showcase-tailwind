@@ -1,5 +1,3 @@
-Sure, here's an improved version of your README content for your GitHub project:
-
 # Sales-box Task
 
 A simple e-commerce product task using React + Vite and Tailwind CSS.
