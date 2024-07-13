@@ -16,8 +16,9 @@ const productReducer = (state, action) => {
     case "CHANGE_SIZE":
       return {
         ...state,
-        size: action.payload,
-        price: action.payload.price,
+        size: action.payload.size,
+        price: action.payload.size.price,
+        discountPrice: (action.payload.size.price * (1 - action.payload.discount)).toFixed(2),
       };
     default:
       return state;

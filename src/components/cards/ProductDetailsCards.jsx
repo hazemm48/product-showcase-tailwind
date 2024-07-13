@@ -3,6 +3,7 @@ import { Bag2, Heart, Save2, Share, TickCircle, Truck } from "iconsax-react";
 import { Fragment, useContext, useState } from "react";
 import { ProductContext } from "../../contexts/product-context.jsx";
 import colorVariants from "../../utils/colorVariants.js";
+import productData from "../../utils/productData.js";
 
 export const ProductNameCard = ({ name, brand, likes }) => {
   const [state, setState] = useState({
@@ -40,10 +41,8 @@ export const ProductNameCard = ({ name, brand, likes }) => {
 export const ProductPriceCard = ({ price, oldPrice }) => {
   return (
     <section className="flex items-center gap-4">
-      <strong className="text-4xl text-dark-blue">${price?.toFixed(2)}</strong>
-      {oldPrice && (
-        <s className="text-md text-gray-400">${oldPrice?.toFixed(2)}</s>
-      )}
+      <strong className="text-4xl text-dark-blue">${price}</strong>
+      {oldPrice && <s className="text-md text-gray-400">${oldPrice}</s>}
     </section>
   );
 };
@@ -80,10 +79,16 @@ export const ProductColorsCard = ({ colors = [] }) => {
   );
 };
 
-export const ProductSizesCard = ({ sizes = [] }) => {
+export const ProductSizesCard = ({ sizes = [], discount }) => {
   const { state: productState, dispatch } = useContext(ProductContext);
-  console.log("🚀 ~ ProductSizesCard ~ productState:", productState);
-  const sizeChoose = (size) => dispatch({ type: "CHANGE_SIZE", payload: size });
+  const sizeChoose = (size) =>
+    dispatch({
+      type: "CHANGE_SIZE",
+      payload: {
+        size,
+        discount: discount,
+      },
+    });
 
   return (
     <section>

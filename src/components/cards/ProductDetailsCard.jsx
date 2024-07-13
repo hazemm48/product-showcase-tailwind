@@ -14,7 +14,10 @@ export const ProductDetailsCard = () => {
   const { state: productState, dispatch } = useContext(ProductContext);
 
   useLayoutEffect(() => {
-    dispatch({ type: "CHANGE_SIZE", payload: productData.sizes[0] });
+    dispatch({
+      type: "CHANGE_SIZE",
+      payload: { size: productData.sizes[0], discount: productData.discount },
+    });
     dispatch({ type: "CHANGE_COLOR", payload: productData.colors[0] });
   }, []);
 
@@ -27,13 +30,16 @@ export const ProductDetailsCard = () => {
       />
       <hr />
       <ProductPriceCard
-        price={productState.price * (1 - productData.discount)}
+        price={productState.discountPrice}
         oldPrice={productState.price}
       />
       <hr />
       <ProductColorsCard colors={productData.colors} />
       <hr />
-      <ProductSizesCard sizes={productData.sizes} />
+      <ProductSizesCard
+        sizes={productData.sizes}
+        discount={productData.discount}
+      />
       <hr />
       <ProductPurchaseCard />
       <ProductDeliveryCard freeDelivery={productData.free_delivery} />
