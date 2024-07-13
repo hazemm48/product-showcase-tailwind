@@ -1,18 +1,18 @@
 import { ProductProvider } from "../../contexts/product-context.jsx";
 import { ProductDescriptionCard } from "../cards/ProductDescriptionCard.jsx";
-import { ProductCarousal } from "./ProductCarousal.jsx";
-import { ProductDetails } from "./ProductDetails.jsx";
-import productData from "../../utils/productData.json";
+import { ProductCarousalCard } from "../cards/ProductCarousalCard.jsx";
+import { ProductDetailsCard } from "../cards/ProductDetailsCard.jsx";
+import productData from "../../utils/productData.js";
 
 export const ProductContainer = () => {
   return (
     <ProductProvider>
       <main className="grid grid-cols-1 gap-20 md:grid-cols-2">
         <div>
-          <ProductCarousal />
+          <ProductCarousalCard />
         </div>
         <div>
-          <ProductDetails />
+          <ProductDetailsCard />
         </div>
         <section className="md:col-span-2">
           <ProductDescriptionCard

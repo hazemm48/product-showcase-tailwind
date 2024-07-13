@@ -4,13 +4,13 @@ import {
   ProductNameCard,
   ProductPriceCard,
   ProductSizesCard,
-} from "../cards/ProductDetailsCards.jsx";
+} from "./ProductDetailsCards.jsx";
 import { useContext, useLayoutEffect } from "react";
 import { ProductContext } from "../../contexts/product-context.jsx";
-import productData from "../../utils/productData.json";
-import { ProductPurchaseCard } from "../cards/ProductPurchaseCard.jsx";
+import productData from "../../utils/productData.js";
+import { ProductPurchaseCard } from "./ProductPurchaseCard.jsx";
 
-export const ProductDetails = () => {
+export const ProductDetailsCard = () => {
   const { state: productState, dispatch } = useContext(ProductContext);
 
   useLayoutEffect(() => {

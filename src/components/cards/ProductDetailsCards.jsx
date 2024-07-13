@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Bag2, Heart, Save2, Share, TickCircle, Truck } from "iconsax-react";
 import { Fragment, useContext, useState } from "react";
 import { ProductContext } from "../../contexts/product-context.jsx";
-import colorVariants from "../../utils/colorVariants.json";
+import colorVariants from "../../utils/colorVariants.js";
 
 export const ProductNameCard = ({ name, brand, likes }) => {
   const [state, setState] = useState({

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { ProductContext } from '../../contexts/product-context.jsx';
-import colorVariants from '../../utils/colorVariants.json'
+import colorVariants from '../../utils/colorVariants.js'
 import clsx from 'clsx';
 import { Bag2 } from 'iconsax-react';
 
