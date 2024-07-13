@@ -3,9 +3,12 @@ import { useContext, useLayoutEffect, useState } from "react";
 import { CartContext } from "../../contexts/cart-context.jsx";
 import { Button } from "../common/Button.jsx";
 import clsx from "clsx";
+import { AlertContext } from "../../contexts/alert-context.jsx";
 
 export const CartCard = ({ cartRef }) => {
   const { state: cartState, dispatch } = useContext(CartContext);
+  const { dispatch: alertDispatch } = useContext(AlertContext);
+
   const [totalPrice, setTotalPrice] = useState(0);
 
   useLayoutEffect(() => {
@@ -24,6 +27,10 @@ export const CartCard = ({ cartRef }) => {
 
   const checkout = () => {
     dispatch({ type: "CHECKOUT" });
+    alertDispatch({
+      type: "SHOW_ALERT",
+      payload: { text: "Checkout Successful", type: "success" },
+    });
     closeCart();
   };
 

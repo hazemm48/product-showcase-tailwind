@@ -3,13 +3,42 @@ import { Bag2, Heart, Save2, Share, TickCircle, Truck } from "iconsax-react";
 import { Fragment, useContext, useState } from "react";
 import { ProductContext } from "../../contexts/product-context.jsx";
 import colorVariants from "../../utils/colorVariants.js";
-import productData from "../../utils/productData.js";
+import { AlertContext } from "../../contexts/alert-context.jsx";
 
 export const ProductNameCard = ({ name, brand, likes }) => {
+  const { dispatch } = useContext(AlertContext);
+
   const [state, setState] = useState({
     liked: false,
     saved: false,
   });
+  const onShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    dispatch({
+      type: "SHOW_ALERT",
+      payload: { text: "Product link copied to clipboard", type: "info" },
+    });
+  };
+
+  const onLike = () => {
+    setState({ ...state, liked: !state.liked });
+    if (!state.liked) {
+      dispatch({
+        type: "SHOW_ALERT",
+        payload: { text: "Product liked", type: "info" },
+      });
+    }
+  };
+
+  const onSave = () => {
+    setState({ ...state, saved: !state.saved });
+    if (!state.saved) {
+      dispatch({
+        type: "SHOW_ALERT",
+        payload: { text: "Product saved", type: "info" },
+      });
+    }
+  };
   return (
     <section className="capitalize">
       <div className="flex flex-wrap-reverse items-center justify-between gap-3">
@@ -17,19 +46,19 @@ export const ProductNameCard = ({ name, brand, likes }) => {
         <div className="flex gap-3">
           <button
             className="flex items-center gap-1 rounded-lg bg-rose-50 px-2 py-1 text-xs font-semibold text-red-500"
-            onClick={() => setState({ ...state, liked: !state.liked })}
+            onClick={onLike}
           >
             <Heart size={18} variant={state.liked ? "Bold" : "Outline"} />
             {state.liked ? likes + 1 : likes}
           </button>
           <button
             className="rounded-lg bg-indigo-25 p-2 text-indigo-900"
-            onClick={() => setState({ ...state, saved: !state.saved })}
+            onClick={onSave}
           >
             <Save2 size={18} variant={state.saved ? "Bold" : "Outline"} />
           </button>
           <button className="rounded-lg bg-indigo-25 p-2 text-indigo-900">
-            <Share size={18} />
+            <Share size={18} onClick={onShare} />
           </button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Bag2 } from "iconsax-react";
 import { useContext, useLayoutEffect, useState } from "react";
 import { CartContext } from "../../contexts/cart-context.jsx";
+import clsx from "clsx";
 
 export const NavBar = ({ cartRef }) => {
   const { state: cartState, dispatch } = useContext(CartContext);
@@ -17,7 +18,12 @@ export const NavBar = ({ cartRef }) => {
         onClick={() => cartRef.current?.classList?.toggle("hidden")}
       >
         <Bag2 color="#875541" />
-        <p className="absolute left-8 top-[-3px] flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-dark-blue text-xs text-white">
+        <p
+          className={clsx(
+            "absolute left-8 top-[-3px] flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-dark-blue text-xs text-white",
+            { "animate-bounce": quantity },
+          )}
+        >
           {quantity}
         </p>
       </div>
