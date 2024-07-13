@@ -13,6 +13,8 @@ A simple e-commerce product task using React + Vite and Tailwind CSS.
 I have implemented all the task requirements along with some additional features to demonstrate attention to detail:
 1. The like and save buttons are clickable.
 2. The photo gallery slider auto-scrolls when changing the color.
+3. Animations
+4. Toast messages
 
 This task was somewhat challenging as it was my first time using Tailwind CSS. Previously, I relied on Bootstrap and plain CSS. However, after completing this task, I plan to continue learning Tailwind CSS due to its powerful and customizable nature.
 
