@@ -4,6 +4,7 @@
   "brand": "teixeira design studio",
   "discount": "0.2044",
   "likes": 109,
+  "free_delivery": true,
   "colors": [
     { "id": 1, "color": "black" },
     {

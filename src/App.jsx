@@ -6,7 +6,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <main>
+    <main className="mb-10">
       <NavBar />
       <section className="px-10 py-4 mt-5">
         <ProductContainer />

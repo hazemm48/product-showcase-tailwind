@@ -1,7 +1,8 @@
 import clsx from "clsx";
-import { Heart, Save2, Share, TickCircle } from "iconsax-react";
-import { useContext, useState } from "react";
+import { Bag2, Heart, Save2, Share, TickCircle, Truck } from "iconsax-react";
+import { Fragment, useContext, useState } from "react";
 import { ProductContext } from "../../contexts/product-context.jsx";
+import colorVariants from "../../utils/colorVariants.json";
 
 export const ProductNameCard = ({ name, brand, likes }) => {
   const [state, setState] = useState({
@@ -10,7 +11,7 @@ export const ProductNameCard = ({ name, brand, likes }) => {
   });
   return (
     <section className="capitalize">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap-reverse items-center justify-between gap-3">
         <p className="text-3xl font-semibold">{name}</p>
         <div className="flex gap-3">
           <button
@@ -21,12 +22,12 @@ export const ProductNameCard = ({ name, brand, likes }) => {
             {state.liked ? likes + 1 : likes}
           </button>
           <button
-            className="bg-indigo-25 rounded-lg p-2 text-indigo-900"
+            className="rounded-lg bg-indigo-25 p-2 text-indigo-900"
             onClick={() => setState({ ...state, saved: !state.saved })}
           >
             <Save2 size={18} variant={state.saved ? "Bold" : "Outline"} />
           </button>
-          <button className="bg-indigo-25 rounded-lg p-2 text-indigo-900">
+          <button className="rounded-lg bg-indigo-25 p-2 text-indigo-900">
             <Share size={18} />
           </button>
         </div>
@@ -53,15 +54,6 @@ export const ProductColorsCard = ({ colors = [] }) => {
   const colorChoose = (color) =>
     dispatch({ type: "CHANGE_COLOR", payload: color });
 
-  const colorVariants = {
-    black: "bg-black",
-    white: "bg-gradient-to-t from-gray-300",
-    orange: "bg-orange-400",
-    blue: "bg-sky-600",
-    red: "bg-rose-700",
-    indigo: "bg-indigo-700",
-  };
-
   return (
     <section>
       <p className="mb-3 text-gray-300">Choose a Color</p>
@@ -70,14 +62,14 @@ export const ProductColorsCard = ({ colors = [] }) => {
           <div
             className={clsx(
               "relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full",
-              colorVariants[color.color],
+              colorVariants[color.color]?.bg,
             )}
             onClick={() => colorChoose(color)}
             key={"color" + color.id}
           >
             {productState.color?.id === color.id && (
               <TickCircle
-                color={color.color === "white" ? "black" : "white"}
+                color={colorVariants[color.color]?.text || "white"}
                 size={36}
               />
             )}
@@ -126,16 +118,44 @@ export const ProductSizesCard = ({ sizes = [] }) => {
   );
 };
 
-const PurchaseProduct = () => {
-  const [counter, setCounter] = useState(1);
+export const ProductDeliveryCard = ({ freeDelivery }) => {
+  const deliveryOptions = [
+    {
+      icon: Truck,
+      text: "Free Delivery",
+      description: (
+        <u className="cursor-pointer">
+          Enter your Postal code for Delivery Availability
+        </u>
+      ),
+      show: freeDelivery,
+    },
+    {
+      icon: Bag2,
+      text: "Return Delivery",
+      description: (
+        <>
+          Free 30 days Delivery Return.{" "}
+          <u className="cursor-pointer">Details</u>
+        </>
+      ),
+      show: true,
+    },
+  ].filter(({ show }) => show);
   return (
-    <section className="flex gap-3">
-      <div className="flex justify-between px-2 py-3">
-        <button >-</button>
-        <strong className="text-lg text-dark-blue">{counter}</strong>
-        <button>+</button>
-      </div>
-      <div></div>
+    <section className="rounded-xl border border-neutral-200 p-4">
+      {deliveryOptions.map(({ icon: Icon, text, description }, i) => (
+        <Fragment key={"delivery" + i}>
+          <div className="flex gap-3">
+            <Icon color="#D75951" size={21} />
+            <div className="flex flex-col gap-1">
+              <p className="font-bold text-dark-blue">{text}</p>
+              <p className="text-sm text-stone-500">{description}</p>
+            </div>
+          </div>
+          {i < deliveryOptions.length - 1 && <hr className="my-4" />}
+        </Fragment>
+      ))}
     </section>
   );
 };

@@ -1,5 +1,6 @@
 import {
   ProductColorsCard,
+  ProductDeliveryCard,
   ProductNameCard,
   ProductPriceCard,
   ProductSizesCard,
@@ -7,6 +8,7 @@ import {
 import { useContext, useLayoutEffect } from "react";
 import { ProductContext } from "../../contexts/product-context.jsx";
 import productData from "../../utils/productData.json";
+import { ProductPurchaseCard } from "../cards/ProductPurchaseCard.jsx";
 
 export const ProductDetails = () => {
   const { state: productState, dispatch } = useContext(ProductContext);
@@ -33,6 +35,8 @@ export const ProductDetails = () => {
       <hr />
       <ProductSizesCard sizes={productData.sizes} />
       <hr />
+      <ProductPurchaseCard />
+      <ProductDeliveryCard freeDelivery={productData.free_delivery} />
     </div>
   );
 };
