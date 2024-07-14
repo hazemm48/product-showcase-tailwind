@@ -26,7 +26,7 @@ export const CartCard = ({ cartRef }) => {
   };
 
   const checkout = () => {
-    dispatch({ type: "CHECKOUT" });
+    dispatch({ type: "CLEAR_CART" });
     alertDispatch({
       type: "SHOW_ALERT",
       payload: { text: "Checkout Successful", type: "success" },
@@ -43,6 +43,8 @@ export const CartCard = ({ cartRef }) => {
     if (product.quantity == 1) return;
     dispatch({ type: "DECREMENT_PRODUCT", payload: product });
   };
+
+  const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
   return (
     <div
@@ -65,6 +67,14 @@ export const CartCard = ({ cartRef }) => {
           </p>
           {cartState.products.length ? (
             <>
+              {cartState.products.length > 1 && (
+                <button
+                  className="self-end text-xs font-semibold text-gray-400"
+                  onClick={clearCart}
+                >
+                  Clear Cart
+                </button>
+              )}
               <section className="flex max-h-48 flex-col gap-2 overflow-y-auto overflow-x-hidden p-2">
                 {cartState.products.map((product, i) => (
                   <div
@@ -76,7 +86,7 @@ export const CartCard = ({ cartRef }) => {
                       variant="Bold"
                       color="#D75951"
                       onClick={() => removeProduct(product)}
-                      className="absolute right-[-10px] top-[-10px]"
+                      className="absolute right-[-10px] top-[-10px] cursor-pointer"
                     />
                     <div className="flex items-center justify-between gap-4 p-2">
                       <div className="flex items-center gap-4 capitalize">

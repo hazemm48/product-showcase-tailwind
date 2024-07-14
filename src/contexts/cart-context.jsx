@@ -41,7 +41,7 @@ const cartReducer = (state, action) => {
             : product,
         ),
       };
-    case "CHECKOUT":
+    case "CLEAR_CART":
       return {
         products: [],
       };
