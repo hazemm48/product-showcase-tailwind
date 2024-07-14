@@ -21,22 +21,24 @@ const cartReducer = (state, action) => {
       };
     case "INCREMENT_PRODUCT":
       return {
-        products: state.products.map(
-          (product) =>
-            product?.cartId === action.payload?.cartId && {
-              ...product,
-              quantity: product.quantity + 1,
-            },
+        products: state.products.map((product) =>
+          product?.cartId === action.payload?.cartId
+            ? {
+                ...product,
+                quantity: product.quantity + 1,
+              }
+            : product,
         ),
       };
     case "DECREMENT_PRODUCT":
       return {
-        products: state.products.map(
-          (product) =>
-            product?.cartId === action.payload?.cartId && {
-              ...product,
-              quantity: product.quantity - 1,
-            },
+        products: state.products.map((product) =>
+          product?.cartId === action.payload?.cartId
+            ? {
+                ...product,
+                quantity: product.quantity - 1,
+              }
+            : product,
         ),
       };
     case "CHECKOUT":
