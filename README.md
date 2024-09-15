@@ -1,26 +1,17 @@
-# Sales-box Task
+# Product Showcase using tailwind
 
-A simple e-commerce product task using React + Vite and Tailwind CSS.
+A simple e-commerce product showcase using React + Vite and Tailwind CSS.
 
-## Packages Used:
+## Project Goal
 
-- **clsx**: For writing clean and maintainable class names.
-- **swiper.js**: For creating a photo gallery swiper.
-- **iconsax-react**: For icons; chosen for its lightweight nature and easy customization with different colors and sizes.
+The primary goal of this project is to practice and showcase the use of Tailwind CSS in a React application. By building a product showcase, we aim to:
 
-## Features
+- Gain hands-on experience with Tailwind's utility-first approach
+- Explore responsive design techniques using Tailwind classes
+- Implement a modern, clean UI efficiently with minimal custom CSS
+- Demonstrate the integration of Tailwind with React components
 
-I have implemented all the task requirements along with some additional features to demonstrate attention to detail:
-1. The like and save buttons are clickable.
-2. The photo gallery slider auto-scrolls when changing the color.
-3. Animations
-4. Toast messages
-
-This task was somewhat challenging as it was my first time using Tailwind CSS. Previously, I relied on Bootstrap and plain CSS. However, after completing this task, I plan to continue learning Tailwind CSS due to its powerful and customizable nature.
-
-### Issues Faced
-
-I encountered an issue with prerendering background colors, which stemmed from how Tailwind renders its classes. The solution I found involved predefining colors in my code, as shown in the `colorVariants.js` file.
+This project serves as a practical exercise in leveraging Tailwind CSS to create a visually appealing and responsive e-commerce interface.
 
 ## How to Load the App
 
@@ -28,8 +19,8 @@ The project uses Node.js and the Vite starter. If you do not have Node >= 6.x in
 
 Once Node is installed, navigate to the directory where you want to store the app:
 ```sh
-git clone https://github.com/hazemm48/sales-box-task.git
-cd sales-box-task
+git clone https://github.com/hazemm48/product-showcase-tailwind.git
+cd product-showcase-tailwind
 npm install
 ```
 After all dependencies have been installed, you can launch the app with:
@@ -38,4 +29,4 @@ npm run dev
 ```
 A new browser window should automatically open displaying the app. If it doesn't, navigate to [http://localhost:5174/](http://localhost:5174/) in your browser.
 
-Alternatively, you can visit the live website at this link: [Sales-box Task](https://sales-box-task.vercel.app).
+Alternatively, you can visit the live website at this link: [Product Showcase](https://product-showcase-tailwind.vercel.app).
